@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour
 {
-    private Animator fadeController;
+    public Animator fadeController;
+    public AnimatorStateInfo animStateInfo;
+    public float NTime;
 
     public GameObject replayButton;
     public GameObject creditsPanel;
@@ -23,7 +25,7 @@ public class Fade : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         fadeController.SetTrigger("fadeIn");    
     }
 
@@ -35,13 +37,14 @@ public class Fade : MonoBehaviour
     public void SetFadeInMenu()
     {
         fadeController.SetTrigger("fadeIn");
-        restartBranchVariables();
+        //restartBranchVariables();
     }
 
 
     IEnumerator FadeIn()
     {
         yield return new WaitForSeconds(3);
+        //BranchingManager.isSwipedLocked = true;
         fadeController.SetTrigger("fadeOut");
         //replayButton.SetActive(true);
         creditsPanel.SetActive(true);
@@ -49,12 +52,11 @@ public class Fade : MonoBehaviour
 
     public void SetFadeOut()
     {
-        fadeController.SetTrigger("fadeOut");
-
+        //fadeController.SetTrigger("fadeOut");
         
     }
 
-    void restartBranchVariables()
+    public void restartBranchVariables()
     {
         BranchingManager._swipedLeftIndex = 0;
         BranchingManager._swipedRightIndex = 0;
@@ -74,11 +76,17 @@ public class Fade : MonoBehaviour
         BranchingManager.isBA1 = false;
         BranchingManager.isBAC = false;
 
+
     }
 
     public void ResetCardSprite ()
     {
         _resettedCard = FindObjectOfType<SwipeEffect>().gameObject;
         _resettedCard.GetComponent<Image>().sprite = _instancerManager._emotionSprites[2];
+    }
+
+    public void lockSwipe ()
+    {
+        //BranchingManager.isSwipedLocked = true;
     }
 }

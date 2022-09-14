@@ -233,7 +233,7 @@ public class SwipeEffect : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
                         BranchingManager.isA2 = true;
                         nodeTextGameObj.GetComponent<TextMeshProUGUI>().text = "So I pull off...";
                         BranchingManager.isSwipedLocked = true;
-                        fader.SetFadeIn();
+                            fader.SetFadeIn();
                     }
 
                     if (BranchingManager.isAB && BranchingManager._swipedLeftIndex == 2)
